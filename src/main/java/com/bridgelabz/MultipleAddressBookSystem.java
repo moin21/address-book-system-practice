@@ -95,5 +95,5 @@ public class MultipleAddressBookSystem {
             contactArrayList1.stream().filter(person -> person.getCity().equals(cityName)).forEach(person -> System.out.println(person.getFirstName()));
         }
     }
-    
+
 }
