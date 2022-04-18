@@ -304,4 +304,20 @@ public class MultipleAddressBookSystem {
             }
         }
     }
+
+    public void writingDataToJson() throws IOException {
+
+        if (multipleAddressBookHashMap.isEmpty()) {
+            System.out.println("There are no Address Books.");
+        } else {
+            System.out.println("Enter name of address book you want to delete contact in");
+            String existingBook = scanner.next();
+            AddressBookSystem addressBook = multipleAddressBookHashMap.get(existingBook);
+            if (addressBook == null) {
+                System.out.println("No address book exists with given name");
+            } else {
+                addressBook.writeToJson();
+            }
+        }
+    }
 }

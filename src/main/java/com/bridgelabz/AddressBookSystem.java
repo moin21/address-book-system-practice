@@ -1,6 +1,6 @@
 package com.bridgelabz;
 
-import com.opencsv.CSVReader;
+import com.google.gson.Gson;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
@@ -10,7 +10,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -28,7 +27,6 @@ public class AddressBookSystem {
      * Arraylist of Contact Type - contactArrayList.
      */
     ArrayList<Contact> contactArrayList = new ArrayList<>();
-
 
 
     /**
@@ -177,7 +175,27 @@ public class AddressBookSystem {
             ioException.printStackTrace();
         }
     }
+
+    public void writeToJson() throws IOException {
+        FileWriter file = new FileWriter("address-book-json.txt");
+        String json = new Gson().toJson(contactArrayList);
+        try {
+            file.write(json);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        } finally {
+
+            try {
+                file.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
+
 
 
 

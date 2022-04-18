@@ -31,7 +31,7 @@ public class AddressBookMain {
         boolean moreChanges = true;
         while (moreChanges) {
             System.out.println("Choose a number to perform a specific action: ");
-            System.out.println("1. To Add Contacts\n 2. To Print Contact List\n 3. To Edit Contact\n 4. To Delete Contact\n 5. To Add AddressBook\n 6. To Search By City\n 7. To Count Contacts By City\n 8. To Sort AddressBook\n 9. To Write AddressBook To txt Fil\n 10. To Read From Txt File\n 11. To read CSV\n 12. Write AddressBook To CSV\n 13. To Exit AddressBook\n");
+            System.out.println("1. To Add Contacts\n 2. To Print Contact List\n 3. To Edit Contact\n 4. To Delete Contact\n 5. To Add AddressBook\n 6. To Search By City\n 7. To Count Contacts By City\n 8. To Sort AddressBook\n 9. To Write AddressBook To txt Fil\n 10. To Read From Txt File\n 11. To read CSV\n 12. To Write AddressBook To CSV\n 13. To write AddressBook To Json\n 14. To Read AddressBook From Json\n 15. To Exit AddressBook\n");
             int action = scanner.nextInt();
 
             switch (action) {
@@ -47,7 +47,8 @@ public class AddressBookMain {
                 case 10 -> multipleAddressBookSystem.readingContacts();
                 case 11 -> multipleAddressBookSystem.readFromCSV();
                 case 12 -> multipleAddressBookSystem.writingDataToCSV();
-                case 13 -> {
+                case 13 -> multipleAddressBookSystem.writingDataToJson();
+                case 15 -> {
                     moreChanges = false;
                     System.out.println("You are out of the Address Book System");
                 }
