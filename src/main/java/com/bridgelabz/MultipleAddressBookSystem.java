@@ -1,8 +1,11 @@
 package com.bridgelabz;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MultipleAddressBookSystem {
     Scanner scanner = new Scanner(System.in);
@@ -96,4 +99,62 @@ public class MultipleAddressBookSystem {
         }
     }
 
+    public void countByCity() {
+        System.out.println("Enter the name of the City to search contacts : ");
+        String cityName = scanner.next();
+
+        for (String i : multipleAddressBookHashMap.keySet()) {
+            AtomicInteger count = new AtomicInteger();
+            ArrayList<Contact> contactArrayList1 = multipleAddressBookHashMap.get(i).contactArrayList;
+            contactArrayList1.stream().filter(person -> person.getState().equalsIgnoreCase(cityName)).forEach(person -> count.getAndIncrement());
+            System.out.println("Number on contacts in the city are: " + count);
+        }
+    }
+
+    public void sortAddressBook() {
+        for (String i : multipleAddressBookHashMap.keySet()) {
+            ArrayList<Contact> contactArrayList1 = multipleAddressBookHashMap.get(i).contactArrayList;
+
+            List<Contact> sorted = contactArrayList1.stream().sorted((firstperson, secondperson) ->
+                    firstperson.getFirstName().compareTo(secondperson.getFirstName())).toList();
+
+            System.out.println("------ Sorted Address Book ------");
+            for (Contact contact : sorted) {
+                System.out.println(contact);
+                System.out.println();
+            }
+        }
+    }
+
+    public void writingContacts() throws IOException {
+
+        if (multipleAddressBookHashMap.isEmpty()) {
+            System.out.println("There are no Address Books.");
+        } else {
+            System.out.println("Enter name of address book you want to delete contact in");
+            String existingBook = scanner.next();
+            AddressBookSystem addressBook = multipleAddressBookHashMap.get(existingBook);
+            if (addressBook == null) {
+                System.out.println("No address book exists with given name");
+            } else {
+                multipleAddressBookHashMap.get(existingBook).writeToFile();
+            }
+        }
+    }
+
+    public void readingContacts() throws IOException {
+
+        if (multipleAddressBookHashMap.isEmpty()) {
+            System.out.println("There are no Address Books.");
+        } else {
+            System.out.println("Enter name of address book you want to delete contact in");
+            String existingBook = scanner.next();
+            AddressBookSystem addressBook = multipleAddressBookHashMap.get(existingBook);
+            if (addressBook == null) {
+                System.out.println("No address book exists with given name");
+            } else {
+                multipleAddressBookHashMap.get(existingBook).readFromFile();
+            }
+        }
+    }
 }

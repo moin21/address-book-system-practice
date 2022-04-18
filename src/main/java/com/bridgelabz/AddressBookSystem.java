@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.IntStream;
@@ -9,7 +10,7 @@ public class AddressBookSystem {
     ArrayList<Contact> contactArrayList = new ArrayList<>();
 
     public void addContact() {
-        Contact contact = new Contact();
+
         System.out.println("Enter Number of Contacts You Want To Add: ");
         int count = scanner.nextInt();
         IntStream.range(0, count).forEach(count1 -> {
@@ -18,6 +19,7 @@ public class AddressBookSystem {
             if (contactArrayList.stream().anyMatch(contact1 -> contact1.getFirstName().equalsIgnoreCase(firstName))) {
                 System.out.println("Contact with Given First Name Already Exists");
             } else System.out.println("Enter Last Name");
+            Contact contact = new Contact();
             String lastName = scanner.next();
             System.out.println("Enter Address");
             String address = scanner.next();
@@ -67,6 +69,24 @@ public class AddressBookSystem {
 
     public void printAddressBook() {
         System.out.println(contactArrayList);
+    }
+
+    public void writeToFile() throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter("addressbook.txt"));
+        for (Contact contact1 : contactArrayList) {
+            writer.write(String.valueOf(contact1));
+        }
+
+        writer.close();
+    }
+
+    public void readFromFile() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("addressbook.txt"));
+        String line;
+        while ((line = reader.readLine()) != null){
+            System.out.println(reader.readLine());
+        }
+        reader.close();
     }
 }
 

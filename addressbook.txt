@@ -1,0 +1,3 @@
+Contact{firstName='qwer', lastName='qwer', address='qwer', city='qwer', state='qwer', zip='qwer', phoneNumber='qwer', email='qwer'}
+Contact{firstName='qwer', lastName='qwer', address='qwer', city='qwer', state='qwer', zip='qwer', phoneNumber='qwer', email='qwer'}
+Contact{firstName='Charlie', lastName='er', address='ety', city='ery', state='er', zip='erty', phoneNumber='ertyy', email='eryer'}
